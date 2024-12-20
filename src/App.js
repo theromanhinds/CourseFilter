@@ -21,6 +21,9 @@ const db = getFirestore(app);
 
 function App() {
 
+  const [swatCourses, setSwatCourses] = useState([]);
+  const [sortOption, setSortOption] = useState('subject-numeric');
+
   useEffect(() => {
     
     async function loadCourses () {
@@ -44,14 +47,34 @@ function App() {
   
     loadCourses();
   }, [])
-  
-  const [swatCourses, setSwatCourses] = useState([]);
+
+  const sortedCourses = (courses) => {
+    let sorted = [...courses];
+
+    if (sortOption === 'subject-numeric') {
+      // Sort by subject, then by title
+      sorted.sort((a, b) => a.subject.localeCompare(b.subject) || a.title.localeCompare(b.title));
+    } else if (sortOption === 'course-alphabetical') {
+      // Sort by course title
+      sorted.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortOption === 'start-time') {
+      // Sort by start time
+      sorted.sort((a, b) => a.times.localeCompare(b.times));
+    }
+
+    return sorted;
+  };
+
+  // Handle sort option change
+  const handleSortChange = (e) => {
+    setSortOption(e.target.value);  // Update the sortOption state
+  };
 
   return (
     <div className="App">
       <div className='MainContainer'>
-        <Filter/>
-        <CourseList courses={swatCourses}/>
+        <Filter handleSortChange={handleSortChange} sortOption={sortOption}/>
+        <CourseList courses={sortedCourses(swatCourses)}/>
       </div>
     </div>
   );
