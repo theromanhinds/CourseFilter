@@ -1,6 +1,7 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CourseList from './CourseList';
+import Filter from './Filter';
 
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -20,51 +21,38 @@ const db = getFirestore(app);
 
 function App() {
 
-  const [showCourses, setShowCourses] = useState(false);
-  const [swatCourses, setSwatCourses] = useState([])
+  useEffect(() => {
+    
+    async function loadCourses () {
 
-  // const testList = [
-  //     {
-  //       courseId: "0001",
-  //       title: "Math",
-  //     },
-  //     {
-  //       courseId: "0002",
-  //       title: "English",
-  //     },
-  //     {
-  //       courseId: "0003",
-  //       title: "Science",
-  //     }
-  // ]
-
-  async function handleClick () {
-
-    try {
-      const coursesCollection = collection(db, "courses");
-      const coursesSnapshot = await getDocs(coursesCollection);
-
-      const coursesList = coursesSnapshot.docs.map(doc => ({
-        courseId: doc.id,  
-        ...doc.data(),
-      }));
-
-      setShowCourses(true);
-      setSwatCourses(coursesList);
-
-    } catch (error) {
-      console.error("Error", error);
+      try {
+        const coursesCollection = collection(db, "courses");
+        const coursesSnapshot = await getDocs(coursesCollection);
+  
+        const coursesList = coursesSnapshot.docs.map(doc => ({
+          courseId: doc.id,  
+          ...doc.data(),
+        }));
+  
+        setSwatCourses(coursesList);
+  
+      } catch (error) {
+        console.error("Error", error);
+      }
+    
     }
   
-  }
+    loadCourses();
+  }, [])
+  
+  const [swatCourses, setSwatCourses] = useState([]);
 
   return (
     <div className="App">
-      <button onClick={handleClick}>
-        {showCourses ? "Hide Courses" : "Show Courses"}
-      </button>
-
-      {showCourses && <CourseList courses={swatCourses} />}
+      <div className='MainContainer'>
+        <Filter/>
+        <CourseList courses={swatCourses}/>
+      </div>
     </div>
   );
 }
