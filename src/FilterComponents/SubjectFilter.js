@@ -1,17 +1,15 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 
-function SubjectFilter({ courses, setFilteredCourses }) {
-
-  const [selectedSubjects, setSelectedSubjects] = useState([]);
+function SubjectFilter({ courses, selectedSubjects, setSelectedSubjects, setFilteredCourses }) {
   const [subjectSearch, setSubjectSearch] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Handle search input change
   const handleSearchChange = (e) => {
-    setSubjectSearch(e.target.value);
+    setSubjectSearch(e.target.value.toUpperCase());
   };
 
+  // Handle subject selection or deselection
   const handleSubjectSelect = (subject) => {
     setSelectedSubjects((prevSelectedSubjects) => {
       if (prevSelectedSubjects.includes(subject)) {
@@ -24,7 +22,7 @@ function SubjectFilter({ courses, setFilteredCourses }) {
   };
 
   // Filter courses based on selected subjects
-  const filterCourses = () => {
+  useEffect(() => {
     if (selectedSubjects.length === 0) {
       setFilteredCourses(courses); // If no subjects selected, show all courses
     } else {
@@ -33,12 +31,7 @@ function SubjectFilter({ courses, setFilteredCourses }) {
       );
       setFilteredCourses(filtered);
     }
-  };
-
-  // Run the filter every time selectedSubjects changes
-  React.useEffect(() => {
-    filterCourses();
-  }, [selectedSubjects, courses]);
+  }, [selectedSubjects, courses, setFilteredCourses]);
 
   // Get unique subjects from the courses
   const uniqueSubjects = [...new Set(courses.map((course) => course.subject))].sort();
@@ -49,7 +42,7 @@ function SubjectFilter({ courses, setFilteredCourses }) {
       <div className="SearchBox">
         <input
           type="text"
-          placeholder="Search by subject"
+          placeholder="MATH"
           value={subjectSearch}
           onChange={handleSearchChange}
           onFocus={() => setIsDropdownOpen(true)}
@@ -85,13 +78,13 @@ function SubjectFilter({ courses, setFilteredCourses }) {
               className="ActiveFilterTag"
               onClick={() => handleSubjectSelect(subject)}
             >
-              {subject} <span className="RemoveTag">x</span>
+              {subject} <span style={{ marginLeft: '5px' }}>&#10005;</span>
             </div>
           ))}
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default SubjectFilter
+export default SubjectFilter;
