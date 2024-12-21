@@ -8,7 +8,7 @@ function Filter({ handleSortChange, sortOption }) {
         <div className='FilterOptionsContainer'>
             <div className='SortingContainer'>
                 <h3>Sort</h3>
-                {['subject-numeric', 'course-alphabetical', 'start-time'].map(value => (
+                {['subject-numeric', 'course-alphabetical'].map(value => (
                     <div key={value}>
                         <label>
                             <input type="radio" name="sort" value={value} checked={sortOption === value} onChange={handleSortChange} />
