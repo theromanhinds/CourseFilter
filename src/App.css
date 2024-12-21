@@ -73,6 +73,7 @@
 }
 
 .WritingFilterContainer {
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -90,7 +91,6 @@
 }
 
 .DistSimpleFilterContainer {
-  /* background-color: green; */
 }
 
 .SearchBox input {
