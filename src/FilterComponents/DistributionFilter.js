@@ -44,7 +44,7 @@ function DistributionFilter({ courses, selectedDistributions, setSelectedDistrib
 
   return (
     <div className="DistSimpleFilterContainer">
-      <h3>Filter by Distribution</h3>
+      <p>Filter by Distribution</p>
       <div className="SearchBox">
         <input
           type="text"

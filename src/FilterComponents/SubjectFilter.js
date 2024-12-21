@@ -38,7 +38,7 @@ function SubjectFilter({ courses, selectedSubjects, setSelectedSubjects, setFilt
 
   return (
     <div className="SubjectFilterContainer">
-      <h3>Filter by Subject</h3>
+      <p>Filter by Subject</p>
       <div className="SearchBox">
         <input
           type="text"

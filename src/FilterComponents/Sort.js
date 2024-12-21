@@ -9,7 +9,7 @@ function Sort({ sortOption, setSortOption }) {
 
   return (
     <div className='SortingContainer'>
-        <h3>Sort</h3>
+        <p>Sort</p>
         {['subject-numeric', 'course-alphabetical'].map(value => (
             <div key={value}>
                 <label>
