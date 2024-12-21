@@ -6,7 +6,8 @@ function CourseList({courses}) {
   return (
     <div className='CourseList'>
       <div className='Header'> 
-        <h2>SWAT Course Filter by Roman Hinds</h2>
+        <h2>The Course Filter</h2>
+        <p>Spring 2025 | Built by Roman Hinds '25</p>
       </div>
       {courses.length > 0 ? (
         courses.map(course => ( <Course key={course.courseId} course={course} /> ))

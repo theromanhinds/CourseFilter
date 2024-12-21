@@ -14,6 +14,7 @@ function App() {
   const [sortOption, setSortOption] = useState('subject-numeric');
   const [selectedSubjects, setSelectedSubjects] = useState([]);  // Track selected subjects filter
   const [selectedDistributions, setSelectedDistributions] = useState([]);  // Track selected distributions filter
+  const [isWritingSelected, setIsWritingSelected] = useState(false);
 
   // Fetch courses from Firebase
   useEffect(() => {
@@ -52,6 +53,11 @@ function App() {
       filtered = filtered.filter((course) => selectedDistributions.includes(course.distSimple));
     }
 
+    // Apply Writing filter
+    if (isWritingSelected) {
+      filtered = filtered.filter(course => course.writing === 'W');
+    }
+
     return filtered;
   };
 
@@ -59,7 +65,7 @@ function App() {
   useEffect(() => {
     const filteredAndSortedCourses = applyFilters(courses);
     setFilteredCourses(filteredAndSortedCourses);  // Apply filters to the courses
-  }, [courses, selectedSubjects, selectedDistributions]); // Re-run when filters change
+  }, [courses, selectedSubjects, selectedDistributions, isWritingSelected]); // Re-run when filters change
 
   return (
     <div className="App">
@@ -68,11 +74,14 @@ function App() {
           courses={courses}
           sortOption={sortOption}
           setSortOption={setSortOption}
+          filteredCourses={filteredCourses}
           setFilteredCourses={setFilteredCourses}
           selectedSubjects={selectedSubjects}
           setSelectedSubjects={setSelectedSubjects}
           selectedDistributions={selectedDistributions}
           setSelectedDistributions={setSelectedDistributions}
+          isWritingSelected={isWritingSelected}
+          setIsWritingSelected={setIsWritingSelected}
         />
         <CourseList courses={sortCourses(filteredCourses, sortOption)} />
       </div>

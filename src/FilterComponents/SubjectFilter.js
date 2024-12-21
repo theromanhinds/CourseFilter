@@ -43,6 +43,7 @@ function SubjectFilter({ courses, selectedSubjects, setSelectedSubjects, setFilt
         <input
           type="text"
           placeholder="MATH"
+          maxLength={"4"}
           value={subjectSearch}
           onChange={handleSearchChange}
           onFocus={() => setIsDropdownOpen(true)}

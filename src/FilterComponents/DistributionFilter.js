@@ -6,7 +6,7 @@ function DistributionFilter({ courses, selectedDistributions, setSelectedDistrib
 
   // Handle search input change
   const handleSearchChange = (e) => {
-    setDistributionSearch(e.target.value);
+    setDistributionSearch(e.target.value.toUpperCase());
   };
 
   // Handle distribution selection or deselection
@@ -49,6 +49,7 @@ function DistributionFilter({ courses, selectedDistributions, setSelectedDistrib
         <input
           type="text"
           placeholder="NS"
+          maxLength={"2"}
           value={distributionSearch}
           onChange={handleSearchChange}
           onFocus={() => setIsDropdownOpen(true)}
