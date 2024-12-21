@@ -8,9 +8,9 @@ function CourseList({courses}) {
       <div className='Header'> 
         <h2>SWAT Course Filter by Roman Hinds</h2>
       </div>
-      {courses.map(course => (
-        <Course key={course.courseId} course={course} />
-      ))}
+      {courses.length > 0 ? (
+        courses.map(course => ( <Course key={course.courseId} course={course} /> ))
+      ) : ( <p>No courses found for selected filters.</p> )}
     </div>
   )
 }

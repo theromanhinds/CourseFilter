@@ -1,23 +1,14 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import Sort from './FilterComponents/Sort';
+import SubjectFilter from './FilterComponents/SubjectFilter';
 
-function Filter({ handleSortChange, sortOption }) {
+function Filter({ courses, sortOption, setSortOption, setFilteredCourses }) {
       
   return (
     <div className='FilterContainer'>
         <div className='FilterOptionsContainer'>
-            <div className='SortingContainer'>
-                <h3>Sort</h3>
-                {['subject-numeric', 'course-alphabetical'].map(value => (
-                    <div key={value}>
-                        <label>
-                            <input type="radio" name="sort" value={value} checked={sortOption === value} onChange={handleSortChange} />
-                            {value === 'subject-numeric' ? 'By Subject' : value === 'course-alphabetical' ? 'By Title' : 'By Time'}
-                        </label>
-                    </div>
-                ))}
-            </div>
-
+            <Sort sortOption={sortOption} setSortOption={setSortOption}/>
+            <SubjectFilter courses={courses} setFilteredCourses={setFilteredCourses}/>
     </div>
     </div>
   )
