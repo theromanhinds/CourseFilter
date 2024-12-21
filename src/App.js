@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { db } from './Firebase';
 import { collection, getDocs } from "firebase/firestore"; 
 
@@ -40,7 +40,7 @@ function App() {
   }, []);
 
   // Function to apply all active filters
-  const applyFilters = (courses) => {
+  const applyFilters = useCallback((courses) => {
     let filtered = [...courses];
 
     // Filter by selected subjects
@@ -59,13 +59,13 @@ function App() {
     }
 
     return filtered;
-  };
+  }, [selectedSubjects, selectedDistributions, isWritingSelected]);;
 
   // Update filteredCourses after applying filters and sorting
   useEffect(() => {
     const filteredAndSortedCourses = applyFilters(courses);
     setFilteredCourses(filteredAndSortedCourses);  // Apply filters to the courses
-  }, [courses, selectedSubjects, selectedDistributions, isWritingSelected]); // Re-run when filters change
+  }, [courses, applyFilters]); // Re-run when filters change
 
   return (
     <div className="App">
