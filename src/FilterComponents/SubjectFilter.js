@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 function SubjectFilter({ courses, selectedSubjects, setSelectedSubjects, setFilteredCourses }) {
+
   const [subjectSearch, setSubjectSearch] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -39,6 +40,7 @@ function SubjectFilter({ courses, selectedSubjects, setSelectedSubjects, setFilt
   return (
     <div className="SubjectFilterContainer">
       <p>Filter by Subject</p>
+
       <div className="SearchBox">
         <input
           type="text"
@@ -50,25 +52,25 @@ function SubjectFilter({ courses, selectedSubjects, setSelectedSubjects, setFilt
           onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)} // Delay to allow click selection
         />
       </div>
-      {isDropdownOpen && (
-        <div className="DropdownContainer">
+
+      {isDropdownOpen && ( <div className="DropdownContainer">
+
           <div className="DropdownList">
-            {uniqueSubjects
-              .filter((subject) =>
-                subject.toLowerCase().includes(subjectSearch.toLowerCase())
-              )
-              .map((subject) => (
-                <div
-                  key={subject}
-                  className="DropdownItem"
-                  onClick={() => handleSubjectSelect(subject)}
-                >
-                  {subject}
+
+            {uniqueSubjects.filter((subject) =>
+              subject.toLowerCase().includes(subjectSearch.toLowerCase())
+              ).map((subject) => ( 
+                
+                <div key={subject} className="DropdownItem"
+                  onClick={() => handleSubjectSelect(subject)}>
+                  {subject} 
                 </div>
-              ))}
+
+            ))}
+
           </div>
-        </div>
-      )}
+
+      </div>)}
 
       {/* Show active subject filters */}
       {selectedSubjects.length > 0 && (
@@ -84,6 +86,7 @@ function SubjectFilter({ courses, selectedSubjects, setSelectedSubjects, setFilt
           ))}
         </div>
       )}
+      
     </div>
   );
 }

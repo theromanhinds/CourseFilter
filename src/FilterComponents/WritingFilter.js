@@ -1,6 +1,7 @@
 import React from 'react';
 
 function WritingFilter({ isWritingSelected, setIsWritingSelected, setFilteredCourses, courses }) {
+  
   const handleCheckboxChange = (e) => {
     const isChecked = e.target.checked;
     setIsWritingSelected(isChecked);
