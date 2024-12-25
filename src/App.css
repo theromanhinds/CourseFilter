@@ -51,6 +51,8 @@
 
 .FilterOptionsContainer {
   top: 13%;
+  /* ADJUST LATER! MAKE SCROLLABLE */
+  top: 0; 
   max-width: 90%;
   height: 80vh;
   position: sticky;

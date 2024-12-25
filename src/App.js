@@ -58,6 +58,8 @@ function App() {
   const [selectedDays, setSelectedDays] = useState([]);
   // This holds the state of all the active Time filters.
   const [selectedTimes, setSelectedTimes] = useState([]);
+  // This holds the state of all the active Time filters.
+  const [selectedInstructors, setSelectedInstructors] = useState([]);
   //This holds the state of if the Writing filter is active.
   const [isWritingSelected, setIsWritingSelected] = useState(false);
 
@@ -93,8 +95,14 @@ function App() {
       filtered = filtered.filter((course) => selectedTimes.includes(course.times));
     }
 
+    // INSTRUCTOR FILTER
+    if (selectedInstructors.length > 0) {
+      filtered = filtered.filter((course) => selectedInstructors.includes(course.instructor));
+    }
+
     return filtered;
-  }, [isFavoriteSelected, selectedSubjects, selectedDistributions, selectedDays, selectedTimes, isWritingSelected]);;
+  }, [isFavoriteSelected, selectedSubjects, selectedDistributions,
+      selectedDays, selectedTimes, isWritingSelected, selectedInstructors]);;
 
   // This hook calls the applyFilters function whenever a filter state changes.
   // It then updates the filteredCourses state.
@@ -121,6 +129,7 @@ function App() {
           selectedDays={selectedDays} setSelectedDays={setSelectedDays}
           selectedTimes={selectedTimes} setSelectedTimes={setSelectedTimes}
           isWritingSelected={isWritingSelected} setIsWritingSelected={setIsWritingSelected}
+          selectedInstructors={selectedInstructors} setSelectedInstructors={setSelectedInstructors}
         />
 
         {/* CourseList is being given a sorted list of filteredCourses,
