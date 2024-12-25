@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-function SubjectFilter({ courses, selectedSubjects, setSelectedSubjects, setFilteredCourses }) {
+function SubjectFilter({ courses, selectedSubjects, setSelectedSubjects }) {
 
+  // Handles state of text in the search field.
   const [subjectSearch, setSubjectSearch] = useState('');
+  // Controls the open and closing of dropdown menu.
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // Handle search input change
+  // Handles text field input change
   const handleSearchChange = (e) => {
     setSubjectSearch(e.target.value.toUpperCase());
   };
 
-  // Handle subject selection or deselection
+  // Handles subject selection or deselection
   const handleSubjectSelect = (subject) => {
     setSelectedSubjects((prevSelectedSubjects) => {
       if (prevSelectedSubjects.includes(subject)) {
@@ -22,25 +24,15 @@ function SubjectFilter({ courses, selectedSubjects, setSelectedSubjects, setFilt
     setSubjectSearch('');
   };
 
-  // Filter courses based on selected subjects
-  useEffect(() => {
-    if (selectedSubjects.length === 0) {
-      setFilteredCourses(courses); // If no subjects selected, show all courses
-    } else {
-      const filtered = courses.filter((course) =>
-        selectedSubjects.includes(course.subject)
-      );
-      setFilteredCourses(filtered);
-    }
-  }, [selectedSubjects, courses, setFilteredCourses]);
-
-  // Get unique subjects from the courses
+  // Gets unique subjects from the courses for dropdown menu
   const uniqueSubjects = [...new Set(courses.map((course) => course.subject))].sort();
 
   return (
     <div className="SubjectFilterContainer">
+
       <p>Filter by Subject</p>
 
+      {/* SEARCH BOX */}
       <div className="SearchBox">
         <input
           type="text"
@@ -52,7 +44,9 @@ function SubjectFilter({ courses, selectedSubjects, setSelectedSubjects, setFilt
           onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)} // Delay to allow click selection
         />
       </div>
+      {/* SEARCH BOX */}
 
+      {/* DROP DOWN MENU */}
       {isDropdownOpen && ( <div className="DropdownContainer">
 
           <div className="DropdownList">
@@ -71,8 +65,9 @@ function SubjectFilter({ courses, selectedSubjects, setSelectedSubjects, setFilt
           </div>
 
       </div>)}
+      {/* DROP DOWN MENU */}
 
-      {/* Show active subject filters */}
+      {/* ACTIVE FILTERS */}
       {selectedSubjects.length > 0 && (
         <div className="ActiveFilters">
           {selectedSubjects.map((subject) => (
@@ -86,7 +81,8 @@ function SubjectFilter({ courses, selectedSubjects, setSelectedSubjects, setFilt
           ))}
         </div>
       )}
-      
+      {/* ACTIVE FILTERS */}
+
     </div>
   );
 }

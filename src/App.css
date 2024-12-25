@@ -167,6 +167,44 @@
   background-color: #ff4d4d; /* Red background when hovered */
 }
 
+.DistActiveFilters {
+  margin-top: 10px;
+  width: 170px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.DistActiveFilterTag {
+  background-color: #000000;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.DistActiveFilterTag:hover {
+  background-color: green; 
+}
+
+.DistActiveFilterTag.active {
+  background-color: green;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.DistActiveFilterTag.active:hover {
+  background-color: #ff4d4d;
+}
+
 /* COURSE LIST STYLING */
 .CourseList {
   width: 100%;

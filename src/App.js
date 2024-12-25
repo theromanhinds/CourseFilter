@@ -48,6 +48,8 @@ function App() {
   // This holds the state of the sorting type selected.
   const [sortOption, setSortOption] = useState('subject-numeric');
 
+  //This holds the state of if the Favorite filter is active.
+  const [isFavoriteSelected, setIsFavoriteSelected] = useState(false);
   // This holds the state of all the active Subject filters.
   const [selectedSubjects, setSelectedSubjects] = useState([]);
   // This holds the state of all the active Distribution filters.
@@ -75,8 +77,10 @@ function App() {
 
     // TODO: Add the remaining filter options below! Add vars to the dependency list below!
 
+    // FAVORTIE FILTER...
+
     return filtered;
-  }, [selectedSubjects, selectedDistributions, isWritingSelected]);;
+  }, [isFavoriteSelected, selectedSubjects, selectedDistributions, isWritingSelected]);;
 
   // This hook calls the applyFilters function whenever a filter state changes.
   // It then updates the filteredCourses state.
@@ -98,6 +102,8 @@ function App() {
           courses={courses}
           sortOption={sortOption}
           setSortOption={setSortOption}
+          isFavoriteSelected={isFavoriteSelected}
+          setIsFavoriteSelected={setIsFavoriteSelected}
           setFilteredCourses={setFilteredCourses}
           selectedSubjects={selectedSubjects}
           setSelectedSubjects={setSelectedSubjects}

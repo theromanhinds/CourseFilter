@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-function DistributionFilter({ courses, selectedDistributions, setSelectedDistributions, setFilteredCourses }) {
+function DistributionFilter({ courses, selectedDistributions, setSelectedDistributions }) {
+  
+  // Handles state of Distribution search box
   const [distributionSearch, setDistributionSearch] = useState('');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // Handle search input change
+  const [activeDistributions, setActiveDistributions] = useState([]);
+
+  // Handles search input change
   const handleSearchChange = (e) => {
     setDistributionSearch(e.target.value.toUpperCase());
   };
 
-  // Handle distribution selection or deselection
+  // Handles distribution selection or deselection
   const handleDistributionSelect = (distribution) => {
     setSelectedDistributions((prevSelectedDistributions) => {
       if (prevSelectedDistributions.includes(distribution)) {
@@ -19,78 +22,42 @@ function DistributionFilter({ courses, selectedDistributions, setSelectedDistrib
       }
     });
 
-    // Clear the search input field when a distribution is selected
+    setActiveDistributions((prev) => 
+      prev.includes(distribution)
+        ? prev.filter((d) => d !== distribution)  // Deselect if already active
+        : [...prev, distribution]                 // Select if not active
+    );
+
     setDistributionSearch('');
   };
 
-  // Filter courses based on selected distributions
-  useEffect(() => {
-    let filteredCourses = [...courses];
-
-    // Filter by Distribution if any filter is applied
-    if (selectedDistributions.length > 0) {
-      filteredCourses = filteredCourses.filter((course) =>
-        selectedDistributions.includes(course.distSimple)
-      );
-    }
-
-    setFilteredCourses(filteredCourses);
-  }, [selectedDistributions, courses, setFilteredCourses]);
-
   // Get unique distribution options and sort them alphabetically
+  // TODO: Remove the blank distribution option from the drowndown menu
   const uniqueDistributions = [
     ...new Set(courses.map((course) => course.distSimple)),
   ].sort();
 
   return (
     <div className="DistSimpleFilterContainer">
+
       <p>Filter by Distribution</p>
-      <div className="SearchBox">
-        <input
-          type="text"
-          placeholder="NS"
-          maxLength={"2"}
-          value={distributionSearch}
-          onChange={handleSearchChange}
-          onFocus={() => setIsDropdownOpen(true)}
-          onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)} // Delay to allow click selection
-        />
-      </div>
-
-      {isDropdownOpen && (
-        <div className="DropdownContainer">
-          <div className="DropdownList">
-            {uniqueDistributions
-              .filter((distribution) =>
-                distribution.toLowerCase().includes(distributionSearch.toLowerCase())
-              )
-              .map((distribution) => (
-                <div
-                  key={distribution}
-                  className="DropdownItem"
-                  onClick={() => handleDistributionSelect(distribution)}
-                >
-                  {distribution}
-                </div>
-              ))}
-          </div>
-        </div>
-      )}
-
-      {/* Show active Distribution filters */}
-      {selectedDistributions.length > 0 && (
-        <div className="ActiveFilters">
-          {selectedDistributions.map((distribution) => (
+      
+      {/* UNIQUE DIST */}
+      {uniqueDistributions.length > 0 && (
+        <div className="DistActiveFilters">
+          {uniqueDistributions.map((distribution) => (
             <div
               key={distribution}
-              className="ActiveFilterTag"
+              className={`DistActiveFilterTag ${activeDistributions.includes(distribution) ? 'active' : ''}`}
               onClick={() => handleDistributionSelect(distribution)} // Deselect the filter when clicked
             >
-              {distribution} <span style={{ marginLeft: '5px' }}>&#10005;</span>
+              {distribution}
             </div>
           ))}
         </div>
       )}
+      {/* UNIQUE DIST */}
+
     </div>
   );
 }
