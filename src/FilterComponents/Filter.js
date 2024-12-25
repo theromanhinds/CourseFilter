@@ -7,6 +7,7 @@ import FavoriteFilter from './FavoriteFilter';
 import DayFilter from './DayFilter';
 import TimeFilter from './TimeFilter';
 import InstructorFilter from './InstructorFilter';
+import FYSeminarFilter from './FYSeminarFilter';
 
 function Filter({ courses, 
                   sortOption, setSortOption,
@@ -16,7 +17,8 @@ function Filter({ courses,
                   isWritingSelected, setIsWritingSelected,
                   selectedDays, setSelectedDays,
                   selectedTimes, setSelectedTimes,
-                  selectedInstructors, setSelectedInstructors }) {
+                  selectedInstructors, setSelectedInstructors,
+                  isFYSSelected, setIsFYSSelected }) {
       
   return (
     <div className='FilterContainer'>
@@ -24,6 +26,7 @@ function Filter({ courses,
             <Sort sortOption={sortOption} setSortOption={setSortOption}/>
             <FavoriteFilter isFavoriteSelected={isFavoriteSelected} setIsFavoriteSelected={setIsFavoriteSelected}/>
             <WritingFilter isWritingSelected={isWritingSelected} setIsWritingSelected={setIsWritingSelected}/>
+            <FYSeminarFilter isFYSSelected={isFYSSelected} setIsFYSSelected={setIsFYSSelected}/>
             <SubjectFilter courses={courses} selectedSubjects={selectedSubjects} setSelectedSubjects={setSelectedSubjects} />
             <DistributionFilter courses={courses} selectedDistributions={selectedDistributions} setSelectedDistributions={setSelectedDistributions}/>
             <DayFilter courses={courses} selectedDays={selectedDays} setSelectedDays={setSelectedDays}/>

@@ -62,6 +62,8 @@ function App() {
   const [selectedInstructors, setSelectedInstructors] = useState([]);
   //This holds the state of if the Writing filter is active.
   const [isWritingSelected, setIsWritingSelected] = useState(false);
+  //This holds the state of if the FYS filter is active.
+  const [isFYSSelected, setIsFYSSelected] = useState(false);
 
   // This function is used by the useEffect hook below to update
   // the filteredCourses state. It only runs when a filter state above changes.
@@ -100,9 +102,15 @@ function App() {
       filtered = filtered.filter((course) => selectedInstructors.includes(course.instructor));
     }
 
+    // FYS FILTER
+    if (isFYSSelected) {
+      filtered = filtered.filter(course => course.courseType === 'FY Seminar');
+    }
+
     return filtered;
   }, [isFavoriteSelected, selectedSubjects, selectedDistributions,
-      selectedDays, selectedTimes, isWritingSelected, selectedInstructors]);;
+      selectedDays, selectedTimes, isWritingSelected, selectedInstructors,
+      isFYSSelected]);;
 
   // This hook calls the applyFilters function whenever a filter state changes.
   // It then updates the filteredCourses state.
@@ -130,6 +138,7 @@ function App() {
           selectedTimes={selectedTimes} setSelectedTimes={setSelectedTimes}
           isWritingSelected={isWritingSelected} setIsWritingSelected={setIsWritingSelected}
           selectedInstructors={selectedInstructors} setSelectedInstructors={setSelectedInstructors}
+          isFYSSelected={isFYSSelected} setIsFYSSelected={setIsFYSSelected}
         />
 
         {/* CourseList is being given a sorted list of filteredCourses,

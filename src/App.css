@@ -36,23 +36,18 @@
   transition: transform 0.3s ease-in-out; /* Smooth transition on hover */
 }
 
-.FilterContainer {
+/* OLD STICKY CONTAINERS */
+/* .FilterContainer {
   background-color: rgb(19, 19, 19);
-  
   min-width: 200px;
   height: auto;
-  
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 3px solid rgb(0, 0, 0);
-
-}
-
-.FilterOptionsContainer {
+} */
+/* .FilterOptionsContainer {
   top: 13%;
-  /* ADJUST LATER! MAKE SCROLLABLE */
-  top: 0; 
   max-width: 90%;
   height: 80vh;
   position: sticky;
@@ -60,7 +55,28 @@
   flex-direction: column;
   justify-content: flex-start;
   z-index: 10;
-  /* border: 0.1px solid white; */
+} */
+/* OLD STICKY CONTAINERS */
+
+.FilterContainer {
+  background-color: rgb(19, 19, 19);
+  min-width: 200px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid rgb(0, 0, 0);
+}
+
+.FilterOptionsContainer {
+  position: relative;
+  top: 80px;
+  max-width: 90%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index: 10;
 }
 
 /* FILTER OPTIONS CONTAINERS */
