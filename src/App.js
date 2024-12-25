@@ -56,6 +56,8 @@ function App() {
   const [selectedDistributions, setSelectedDistributions] = useState([]);
   // This holds the state of all the active Day filters.
   const [selectedDays, setSelectedDays] = useState([]);
+  // This holds the state of all the active Time filters.
+  const [selectedTimes, setSelectedTimes] = useState([]);
   //This holds the state of if the Writing filter is active.
   const [isWritingSelected, setIsWritingSelected] = useState(false);
 
@@ -86,8 +88,13 @@ function App() {
       filtered = filtered.filter((course) => selectedDays.includes(course.days));
     }
 
+    // TIME FILTER
+    if (selectedTimes.length > 0) {
+      filtered = filtered.filter((course) => selectedTimes.includes(course.times));
+    }
+
     return filtered;
-  }, [isFavoriteSelected, selectedSubjects, selectedDistributions, selectedDays, isWritingSelected]);;
+  }, [isFavoriteSelected, selectedSubjects, selectedDistributions, selectedDays, selectedTimes, isWritingSelected]);;
 
   // This hook calls the applyFilters function whenever a filter state changes.
   // It then updates the filteredCourses state.
@@ -112,6 +119,7 @@ function App() {
           selectedSubjects={selectedSubjects} setSelectedSubjects={setSelectedSubjects}
           selectedDistributions={selectedDistributions} setSelectedDistributions={setSelectedDistributions}
           selectedDays={selectedDays} setSelectedDays={setSelectedDays}
+          selectedTimes={selectedTimes} setSelectedTimes={setSelectedTimes}
           isWritingSelected={isWritingSelected} setIsWritingSelected={setIsWritingSelected}
         />
 
