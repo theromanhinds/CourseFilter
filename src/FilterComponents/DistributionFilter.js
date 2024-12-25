@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
 
-function DistributionFilter({ courses, selectedDistributions, setSelectedDistributions }) {
-  
-  // Handles state of Distribution search box
-  const [distributionSearch, setDistributionSearch] = useState('');
+function DistributionFilter({ courses, setSelectedDistributions }) {
 
   const [activeDistributions, setActiveDistributions] = useState([]);
-
-  // Handles search input change
-  const handleSearchChange = (e) => {
-    setDistributionSearch(e.target.value.toUpperCase());
-  };
 
   // Handles distribution selection or deselection
   const handleDistributionSelect = (distribution) => {
@@ -28,7 +20,6 @@ function DistributionFilter({ courses, selectedDistributions, setSelectedDistrib
         : [...prev, distribution]                 // Select if not active
     );
 
-    setDistributionSearch('');
   };
 
   // Get unique distribution options and sort them alphabetically

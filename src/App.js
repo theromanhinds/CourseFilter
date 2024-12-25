@@ -54,6 +54,8 @@ function App() {
   const [selectedSubjects, setSelectedSubjects] = useState([]);
   // This holds the state of all the active Distribution filters.
   const [selectedDistributions, setSelectedDistributions] = useState([]);
+  // This holds the state of all the active Day filters.
+  const [selectedDays, setSelectedDays] = useState([]);
   //This holds the state of if the Writing filter is active.
   const [isWritingSelected, setIsWritingSelected] = useState(false);
 
@@ -79,8 +81,13 @@ function App() {
 
     // FAVORTIE FILTER...
 
+    // DAY FILTER
+    if (selectedDays.length > 0) {
+      filtered = filtered.filter((course) => selectedDays.includes(course.days));
+    }
+
     return filtered;
-  }, [isFavoriteSelected, selectedSubjects, selectedDistributions, isWritingSelected]);;
+  }, [isFavoriteSelected, selectedSubjects, selectedDistributions, selectedDays, isWritingSelected]);;
 
   // This hook calls the applyFilters function whenever a filter state changes.
   // It then updates the filteredCourses state.
@@ -99,18 +106,13 @@ function App() {
             TODO: Find a better way to give these children
             acess to state variables and functions. */}
         <Filter
-          courses={courses}
-          sortOption={sortOption}
-          setSortOption={setSortOption}
-          isFavoriteSelected={isFavoriteSelected}
-          setIsFavoriteSelected={setIsFavoriteSelected}
-          setFilteredCourses={setFilteredCourses}
-          selectedSubjects={selectedSubjects}
-          setSelectedSubjects={setSelectedSubjects}
-          selectedDistributions={selectedDistributions}
-          setSelectedDistributions={setSelectedDistributions}
-          isWritingSelected={isWritingSelected}
-          setIsWritingSelected={setIsWritingSelected}
+          courses={courses} setFilteredCourses={setFilteredCourses}
+          sortOption={sortOption} setSortOption={setSortOption}
+          isFavoriteSelected={isFavoriteSelected} setIsFavoriteSelected={setIsFavoriteSelected}
+          selectedSubjects={selectedSubjects} setSelectedSubjects={setSelectedSubjects}
+          selectedDistributions={selectedDistributions} setSelectedDistributions={setSelectedDistributions}
+          selectedDays={selectedDays} setSelectedDays={setSelectedDays}
+          isWritingSelected={isWritingSelected} setIsWritingSelected={setIsWritingSelected}
         />
 
         {/* CourseList is being given a sorted list of filteredCourses,
