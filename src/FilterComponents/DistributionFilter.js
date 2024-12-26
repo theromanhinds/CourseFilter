@@ -24,9 +24,11 @@ function DistributionFilter({ courses, setSelectedDistributions }) {
 
   // Get unique distribution options and sort them alphabetically
   // TODO: Remove the blank distribution option from the drowndown menu
-  const uniqueDistributions = [
-    ...new Set(courses.map((course) => course.distSimple)),
-  ].sort();
+  // const uniqueDistributions = [
+  //   ...new Set(courses.map((course) => course.distSimple)),
+  // ].sort();
+
+  const uniqueDistributions = ['HU', 'NS', 'SS'];
 
   return (
     <div className="TagFilterContainer">

@@ -25,9 +25,12 @@ function DayFilter({ courses, setSelectedDays }) {
 
 // Get unique day options and sort them alphabetically
 // TODO: Remove the blank day option from the drowndown menu
-const uniqueDays = [
-    ...new Set(courses.map((course) => course.days)),
-].sort();
+
+// const uniqueDays = [
+//     ...new Set(courses.map((course) => course.days)),
+// ].sort();
+
+const uniqueDays = ['M', 'T', 'W', 'R', 'F', 'MWF', 'TR', 'MW', 'MF', 'WF']
 
 return (
     <div className="TagFilterContainer">

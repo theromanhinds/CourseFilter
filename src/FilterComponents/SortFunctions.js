@@ -8,7 +8,7 @@ export const extractNumber = (courseNum) => {
   export const sortCourses = (courses, sortOption) => {
     let sorted = [...courses];
   
-    if (sortOption === 'subject-numeric') {
+    if (sortOption === false) {
       // Sort by subject alphabetically first, then by course number (numeric value)
       sorted.sort((a, b) => {
         // Compare subject first
@@ -27,7 +27,7 @@ export const extractNumber = (courseNum) => {
   
         return numA - numB; // Compare the numeric values
       });
-    } else if (sortOption === 'course-alphabetical') {
+    } else if (sortOption === true) {
       // Sort by course title
       sorted.sort((a, b) => a.title.localeCompare(b.title));
     }

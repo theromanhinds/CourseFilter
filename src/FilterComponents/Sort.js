@@ -1,28 +1,24 @@
 import React from 'react'
+import ToggleSwitch from './ToggleSwitch';
 
 function Sort({ sortOption, setSortOption }) {
     
       // Handle sort option change
       const handleSortChange = (e) => {
-        setSortOption(e.target.value);  // Update the sortOption state
+        setSortOption(e.target.checked);
       };
 
   return (
-    <div className='SortingContainer'>
-        <p>Sort</p>
-        {['subject-numeric', 'course-alphabetical'].map(value => (
-            <div className='SortOption' key={value}>
-                <label>
-                    <input type="radio" 
-                    name="sort" value={value} 
-                    checked={sortOption === value} 
-                    onChange={handleSortChange} />
-                    {value === 'subject-numeric' ? 
-                    'By Subject' : 'By Title'}
-                </label>
-            </div>
-        ))}
+
+    <div className="ToggleFilterContainer">
+      
+      Sort by Title
+
+      <ToggleSwitch checked={sortOption}
+          handleCheckboxChange={handleSortChange}/>
+
     </div>
+    
   )
 }
 

@@ -51,7 +51,7 @@ function App() {
   const [filteredCourses, setFilteredCourses] = useState([]);
 
   // This holds the state of the sorting type selected.
-  const [sortOption, setSortOption] = useState('subject-numeric');
+  const [sortOption, setSortOption] = useState(false);
 
   //This holds the state of if the Favorite filter is active.
   const [isFavoriteSelected, setIsFavoriteSelected] = useState(false);
@@ -124,6 +124,18 @@ function App() {
     setFilteredCourses(filteredCoursesList); 
   }, [courses, applyFilters]);
 
+  const clearFilters = () => {
+    // setSortOption(false);
+    // setIsFavoriteSelected(false);
+    // setSelectedSubjects([]);
+    // setSelectedDistributions([]);
+    // setSelectedDays([]);
+    // setSelectedTimes([]);
+    // setSelectedInstructors([]);
+    // setIsWritingSelected(false);
+    // setIsFYSSelected(false);
+  }
+
   return (
     <div className="App">
       <div className='MainContainer'>
@@ -148,6 +160,7 @@ function App() {
             isWritingSelected={isWritingSelected} setIsWritingSelected={setIsWritingSelected}
             selectedInstructors={selectedInstructors} setSelectedInstructors={setSelectedInstructors}
             isFYSSelected={isFYSSelected} setIsFYSSelected={setIsFYSSelected}
+            clearFilters={clearFilters}
           />
         </div>
 

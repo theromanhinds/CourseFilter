@@ -2,6 +2,7 @@ import '../Courses.css';
 
 import React from 'react'
 import Course from './Course';
+import MobileCourse from './MobileCourse';
 
 function CourseList({filteredCourses, isFilterMenuOpen, setIsFilterMenuOpen}) {
   return (
@@ -20,6 +21,10 @@ function CourseList({filteredCourses, isFilterMenuOpen, setIsFilterMenuOpen}) {
       </div>
       {filteredCourses.length > 0 ? (
         filteredCourses.map(course => ( <Course key={course.courseId} course={course} /> ))
+      ) : ( <p>No courses found for selected filters.</p> )}
+
+      {filteredCourses.length > 0 ? (
+        filteredCourses.map(course => ( <MobileCourse key={course.courseId} course={course} /> ))
       ) : ( <p>No courses found for selected filters.</p> )}
     </div>
   )

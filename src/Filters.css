@@ -63,7 +63,6 @@ input:checked + .Slider:before {
 
 .FilterMenu {
   background-color: rgb(19, 19, 19);
-
   color: white;
   height: 100%;
   width: 90%;
@@ -93,6 +92,7 @@ input:checked + .Slider:before {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 50px;
   padding-bottom: 50px;
   /* flex-grow: 1;  */
 }
@@ -109,18 +109,42 @@ input:checked + .Slider:before {
 }
 
 .MobileFilterButtonFilters {
+  position: absolute;
   background-color: transparent;
   color: white;
   border: none;
   cursor: pointer;
   font-size: 20px;
   align-items: flex-start;
-  padding-left: 0;
-  padding-right: 0;
+  left: 20px;
+  top: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
+/* STYLING FOR DESKTOP */
+@media (min-width: 768px) {
+  .FilterMenu {
+    background-color: rgb(19, 19, 19);
+    color: white;
+    height: 100%;
+    width: 50%;
+  
+    position: fixed;
+    left: -100%;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+    z-index: 10; 
+  }
+
+  .CourseList {
+    /* margin-left: 300px;  */
+  }
+}
+
+/* STYLING FOR MOBILE */
 @media (max-width: 768px) {
   
   .FilterMenu {
@@ -292,4 +316,26 @@ input:checked + .Slider:before {
 
 .ActiveFilterTag.active:hover {
   background-color: #ff4d4d;
+}
+
+.ClearFilters {
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  align-items: flex-start;
+  left: 20px;
+  top: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 12px;
+  border: 1px solid white;
+}
+
+.ClearFilters:hover {
+  background-color: red; 
 }

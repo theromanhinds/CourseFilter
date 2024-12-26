@@ -20,7 +20,8 @@ function Filter({ courses, isFilterMenuOpen, setIsFilterMenuOpen,
                   selectedDays, setSelectedDays,
                   selectedTimes, setSelectedTimes,
                   selectedInstructors, setSelectedInstructors,
-                  isFYSSelected, setIsFYSSelected }) {
+                  isFYSSelected, setIsFYSSelected,
+                  clearFilters }) {
       
   return (
     <div className='FilterContainer'>
@@ -42,6 +43,7 @@ function Filter({ courses, isFilterMenuOpen, setIsFilterMenuOpen,
             <DayFilter courses={courses} selectedDays={selectedDays} setSelectedDays={setSelectedDays}/>
             <TimeFilter courses={courses} selectedTimes={selectedTimes} setSelectedTimes={setSelectedTimes}/>
             <InstructorFilter courses={courses} selectedInstructors={selectedInstructors} setSelectedInstructors={setSelectedInstructors}/>
+            <button onClick={clearFilters} className='ClearFilters'>Clear Filters (coming soon!)</button>
       </div>
     </div>
   )
