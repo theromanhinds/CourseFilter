@@ -16,7 +16,7 @@ function CourseList({filteredCourses, isFilterMenuOpen, setIsFilterMenuOpen}) {
         </button>
 
         <h2>The Course Filter</h2>
-        <p>Spring 2025 | Built by Roman Hinds '25</p>
+        {/* <p>Spring 2025 | Built by Roman Hinds '25</p> */}
       </div>
       {filteredCourses.length > 0 ? (
         filteredCourses.map(course => ( <Course key={course.courseId} course={course} /> ))

@@ -11,7 +11,7 @@ function Sort({ sortOption, setSortOption }) {
     <div className='SortingContainer'>
         <p>Sort</p>
         {['subject-numeric', 'course-alphabetical'].map(value => (
-            <div key={value}>
+            <div className='SortOption' key={value}>
                 <label>
                     <input type="radio" 
                     name="sort" value={value} 

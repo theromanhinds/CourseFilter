@@ -1,42 +1,3 @@
-/* .FilterMenu {
-  background-color: rgb(19, 19, 19);
-  color: white;
-
-  width: 80%;
-  height: 100%;
-  left: -100%;
-  position: fixed;
-  
-  transition: left 0.3s ease;
-  overflow-y: auto;
-}
-
-.FilterMenu.open {
-  left: 0;
-}
-
-.FilterContainer {
-  background-color: rgb(19, 19, 19);
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: auto;
-
-}
-
-.FilterOptionsContainer {
-  background-color: blue;
-  height: 90%;
-  width: 90%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-} */
-
 .ToggleSwitch {
   position: relative;
   display: inline-block;
@@ -75,7 +36,7 @@
 }
 
 input:checked + .Slider {
-  background-color: #4caf50;  /* Green when active */
+  background-color: green;  /* Green when active */
 }
 
 input:checked + .Slider:before {
@@ -148,16 +109,16 @@ input:checked + .Slider:before {
 }
 
 .MobileFilterButtonFilters {
-  top: 20px;
-  left: 20px;
-  width: 40px;
-  background-color: #1d85ee;
+  background-color: transparent;
   color: white;
-  padding: 10px;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
+  align-items: flex-start;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 @media (max-width: 768px) {
@@ -186,6 +147,11 @@ input:checked + .Slider:before {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.SortOption {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .TimeFilterContainer,.InstructorFilterContainer {
@@ -307,7 +273,6 @@ input:checked + .Slider:before {
 
 .ActiveFilterTag {
   background-color: #000000;
-
   color: white;
   padding: 15px 30px;
   border-radius: 6px;
@@ -317,21 +282,14 @@ input:checked + .Slider:before {
   font-size: 14px;
 }
 
-.DistActiveFilterTag:hover {
+.ActiveFilterTag:hover {
   background-color: green; 
 }
 
-.DistActiveFilterTag.active {
+.ActiveFilterTag.active {
   background-color: green;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-size: 14px;
 }
 
-.DistActiveFilterTag.active:hover {
+.ActiveFilterTag.active:hover {
   background-color: #ff4d4d;
 }
