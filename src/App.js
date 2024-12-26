@@ -113,7 +113,7 @@ function App() {
     }
 
     return filtered;
-  }, [isFavoriteSelected, selectedSubjects, selectedDistributions,
+  }, [selectedSubjects, selectedDistributions,
       selectedDays, selectedTimes, isWritingSelected, selectedInstructors,
       isFYSSelected]);;
 
