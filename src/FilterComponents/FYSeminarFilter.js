@@ -1,4 +1,5 @@
 import React from 'react'
+import ToggleSwitch from './ToggleSwitch';
 
 function FYSeminarFilter({ isFYSSelected, setIsFYSSelected }) {
   
@@ -9,17 +10,14 @@ function FYSeminarFilter({ isFYSSelected, setIsFYSSelected }) {
     };
   
     return (
-      <div className="WritingFilterContainer">
-  
-        <label>
-          <input
-            type="checkbox"
-            checked={isFYSSelected}
-            onChange={handleCheckboxChange}/>
-          First Year Seminar
-        </label>
-  
-      </div>
+      <div className="ToggleFilterContainer">
+      
+      FY Seminar
+
+      <ToggleSwitch checked={isFYSSelected}
+          handleCheckboxChange={handleCheckboxChange}/>
+
+    </div>
     );
   }
 

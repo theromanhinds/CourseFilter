@@ -1,3 +1,5 @@
+import '../Filters.css';
+
 import React from 'react'
 import Sort from './Sort';
 import SubjectFilter from './SubjectFilter';
@@ -9,7 +11,7 @@ import TimeFilter from './TimeFilter';
 import InstructorFilter from './InstructorFilter';
 import FYSeminarFilter from './FYSeminarFilter';
 
-function Filter({ courses, 
+function Filter({ courses, isFilterMenuOpen, setIsFilterMenuOpen,
                   sortOption, setSortOption,
                   isFavoriteSelected, setIsFavoriteSelected,
                   selectedSubjects, setSelectedSubjects,
@@ -23,6 +25,14 @@ function Filter({ courses,
   return (
     <div className='FilterContainer'>
         <div className='FilterOptionsContainer'>
+
+            {/* Mobile Filter Button */}
+            <button 
+            className="MobileFilterButtonFilters" 
+            onClick={() => setIsFilterMenuOpen(!isFilterMenuOpen)}>
+            <span style={{ marginLeft: '0px' }}>&#9776;</span>
+            </button>
+
             <Sort sortOption={sortOption} setSortOption={setSortOption}/>
             <FavoriteFilter isFavoriteSelected={isFavoriteSelected} setIsFavoriteSelected={setIsFavoriteSelected}/>
             <WritingFilter isWritingSelected={isWritingSelected} setIsWritingSelected={setIsWritingSelected}/>

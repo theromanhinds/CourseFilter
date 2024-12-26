@@ -1,4 +1,5 @@
 import React from 'react'
+import ToggleSwitch from './ToggleSwitch';
 
 function FavoriteFilter({ isFavoriteSelected, setIsFavoriteSelected }) {
   
@@ -9,17 +10,14 @@ function FavoriteFilter({ isFavoriteSelected, setIsFavoriteSelected }) {
     };
   
     return (
-      <div className="WritingFilterContainer">
-  
-        <label>
-          <input
-            type="checkbox"
-            checked={isFavoriteSelected}
-            onChange={handleCheckboxChange}/>
-          Favorites
-        </label>
-  
-      </div>
+      <div className="ToggleFilterContainer">
+      
+      Favorites (coming soon!)
+
+      <ToggleSwitch checked={isFavoriteSelected}
+          handleCheckboxChange={handleCheckboxChange}/>
+
+    </div>
     );
   }
 

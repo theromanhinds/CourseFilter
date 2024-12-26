@@ -1,4 +1,5 @@
 import React from 'react';
+import ToggleSwitch from './ToggleSwitch';
 
 function WritingFilter({ isWritingSelected, setIsWritingSelected }) {
   
@@ -9,15 +10,12 @@ function WritingFilter({ isWritingSelected, setIsWritingSelected }) {
   };
 
   return (
-    <div className="WritingFilterContainer">
+    <div className="ToggleFilterContainer">
+      
+      Writing Course
 
-      <label>
-        <input
-          type="checkbox"
-          checked={isWritingSelected}
-          onChange={handleCheckboxChange}/>
-        Writing Course
-      </label>
+      <ToggleSwitch checked={isWritingSelected}
+          handleCheckboxChange={handleCheckboxChange}/>
 
     </div>
   );

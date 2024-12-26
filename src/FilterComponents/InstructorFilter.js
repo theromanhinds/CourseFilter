@@ -29,13 +29,14 @@ function InstructorFilter({ courses, selectedInstructors, setSelectedInstructors
   const uniqueInstructors = [...new Set(courses.map((course) => course.instructor))].sort();
 
   return (
-    <div className="InstructorFilterContainer">
+    <div className="SearchFilterContainer">
 
       <p>Filter by Instructor</p>
 
       {/* SEARCH BOX */}
       <div className="SearchBox">
         <input
+          className='SearchBoxInput'
           type="text"
           placeholder="Murphy"
           maxLength={"4"}

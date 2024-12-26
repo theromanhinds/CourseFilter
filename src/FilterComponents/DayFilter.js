@@ -30,17 +30,17 @@ const uniqueDays = [
 ].sort();
 
 return (
-    <div className="DistSimpleFilterContainer">
+    <div className="TagFilterContainer">
 
     <p>Filter by Day</p>
     
     {/* UNIQUE DIST */}
     {uniqueDays.length > 0 && (
-        <div className="DistActiveFilters">
+        <div className="ActiveFilters">
         {uniqueDays.map((day) => (
             <div
             key={day}
-            className={`DistActiveFilterTag ${activeDays.includes(day) ? 'active' : ''}`}
+            className={`ActiveFilterTag ${activeDays.includes(day) ? 'active' : ''}`}
             onClick={() => handleDaySelect(day)} // Deselect the filter when clicked
             >
             {day}

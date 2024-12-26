@@ -29,17 +29,17 @@ function DistributionFilter({ courses, setSelectedDistributions }) {
   ].sort();
 
   return (
-    <div className="DistSimpleFilterContainer">
+    <div className="TagFilterContainer">
 
       <p>Filter by Distribution</p>
       
       {/* UNIQUE DIST */}
       {uniqueDistributions.length > 0 && (
-        <div className="DistActiveFilters">
+        <div className="ActiveFilters">
           {uniqueDistributions.map((distribution) => (
             <div
               key={distribution}
-              className={`DistActiveFilterTag ${activeDistributions.includes(distribution) ? 'active' : ''}`}
+              className={`ActiveFilterTag ${activeDistributions.includes(distribution) ? 'active' : ''}`}
               onClick={() => handleDistributionSelect(distribution)} // Deselect the filter when clicked
             >
               {distribution}

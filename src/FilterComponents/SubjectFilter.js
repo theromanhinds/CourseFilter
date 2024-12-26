@@ -28,13 +28,14 @@ function SubjectFilter({ courses, selectedSubjects, setSelectedSubjects }) {
   const uniqueSubjects = [...new Set(courses.map((course) => course.subject))].sort();
 
   return (
-    <div className="SubjectFilterContainer">
+    <div className="SearchFilterContainer">
 
       <p>Filter by Subject</p>
 
       {/* SEARCH BOX */}
       <div className="SearchBox">
         <input
+          className='SearchBoxInput'
           type="text"
           placeholder="MATH"
           maxLength={"4"}

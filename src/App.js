@@ -14,6 +14,11 @@ import { sortCourses } from './FilterComponents/SortFunctions';
 
 function App() {
 
+  // Mobile filter menu visibility
+  const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+
+  const closeMenu = () => setIsFilterMenuOpen(false);
+
   // This hook calls to the Firebase database and sets the inital
   // state for courses and filteredCourses.
   // TODO: Maybe replace database call with locally accessible course list.
@@ -123,28 +128,34 @@ function App() {
     <div className="App">
       <div className='MainContainer'>
 
+        <div className={`Overlay ${isFilterMenuOpen ? 'open' : ''}`} onClick={closeMenu}></div>
+
         {/* Every filter state and updating function is being passed
             to a corresponding child component.
 
             TODO: Find a better way to give these children
             acess to state variables and functions. */}
-        <Filter
-          courses={courses} setFilteredCourses={setFilteredCourses}
-          sortOption={sortOption} setSortOption={setSortOption}
-          isFavoriteSelected={isFavoriteSelected} setIsFavoriteSelected={setIsFavoriteSelected}
-          selectedSubjects={selectedSubjects} setSelectedSubjects={setSelectedSubjects}
-          selectedDistributions={selectedDistributions} setSelectedDistributions={setSelectedDistributions}
-          selectedDays={selectedDays} setSelectedDays={setSelectedDays}
-          selectedTimes={selectedTimes} setSelectedTimes={setSelectedTimes}
-          isWritingSelected={isWritingSelected} setIsWritingSelected={setIsWritingSelected}
-          selectedInstructors={selectedInstructors} setSelectedInstructors={setSelectedInstructors}
-          isFYSSelected={isFYSSelected} setIsFYSSelected={setIsFYSSelected}
-        />
+        <div className={`FilterMenu ${isFilterMenuOpen ? 'open' : ''}`}>
+          <Filter
+            isFilterMenuOpen={isFilterMenuOpen} setIsFilterMenuOpen={setIsFilterMenuOpen}
+            courses={courses} setFilteredCourses={setFilteredCourses}
+            sortOption={sortOption} setSortOption={setSortOption}
+            isFavoriteSelected={isFavoriteSelected} setIsFavoriteSelected={setIsFavoriteSelected}
+            selectedSubjects={selectedSubjects} setSelectedSubjects={setSelectedSubjects}
+            selectedDistributions={selectedDistributions} setSelectedDistributions={setSelectedDistributions}
+            selectedDays={selectedDays} setSelectedDays={setSelectedDays}
+            selectedTimes={selectedTimes} setSelectedTimes={setSelectedTimes}
+            isWritingSelected={isWritingSelected} setIsWritingSelected={setIsWritingSelected}
+            selectedInstructors={selectedInstructors} setSelectedInstructors={setSelectedInstructors}
+            isFYSSelected={isFYSSelected} setIsFYSSelected={setIsFYSSelected}
+          />
+        </div>
 
         {/* CourseList is being given a sorted list of filteredCourses,
             depending on the sortOption state that is active. 
             sortCourses is an external function. */}
-        <CourseList filteredCourses={sortCourses(filteredCourses, sortOption)} />
+        <CourseList filteredCourses={sortCourses(filteredCourses, sortOption)} 
+                    isFilterMenuOpen={isFilterMenuOpen} setIsFilterMenuOpen={setIsFilterMenuOpen}/>
       </div>
     </div>
   );

@@ -29,13 +29,14 @@ function TimeFilter({ courses, selectedTimes, setSelectedTimes }) {
      const uniqueTimes = [...new Set(courses.map((course) => course.times))].sort();
    
      return (
-       <div className="TimeFilterContainer">
+       <div className="SearchFilterContainer">
    
          <p>Filter by Time</p>
    
          {/* SEARCH BOX */}
          <div className="SearchBox">
            <input
+             className='SearchBoxInput'
              type="text"
              placeholder="8:00am"
              maxLength={"4"}
