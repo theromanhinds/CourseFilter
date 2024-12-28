@@ -89,7 +89,7 @@ function TimeFilter({ courses, selectedTimes, setSelectedTimes }) {
    
              <div className="DropdownList">
    
-               {uniqueTimes.filter((time) =>
+               {sortedTimes.filter((time) =>
                  time.includes(timeSearch)
                  ).map((time) => ( 
                    
