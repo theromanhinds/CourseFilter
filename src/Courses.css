@@ -92,6 +92,10 @@ width: 25%;
     .CourseList {
       /* margin-left: 300px;  */
     }
+
+    .MobileLoading {
+      display: none;
+    }
   }
   
   /* STYLING FOR MOBILE */
@@ -117,6 +121,10 @@ width: 25%;
     
     .Course {
       display: none; 
+    }
+
+    .DesktopLoading {
+      display: none;
     }
 
     .MobileCourse {

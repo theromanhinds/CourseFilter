@@ -3,30 +3,66 @@ import { useState } from 'react';
 
 function TimeFilter({ courses, selectedTimes, setSelectedTimes }) {
     
-    // Handles state of text in the search field.
-     const [timeSearch, setTimeSearch] = useState('');
-     // Controls the open and closing of dropdown menu.
-     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // Handles state of text in the search field.
+  const [timeSearch, setTimeSearch] = useState('');
+  // Controls the open and closing of dropdown menu.
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Handles text field input change
+  const handleSearchChange = (e) => {
+    setTimeSearch(e.target.value);
+  };
+
+  // Handles time selection or deselection
+  const handleTimeSelect = (time) => {
+    setSelectedTimes((prevSelectedTimes) => {
+      if (prevSelectedTimes.includes(time)) {
+        return prevSelectedTimes.filter((s) => s !== time);
+      } else {
+        return [...prevSelectedTimes, time];
+      }
+    });
+    setTimeSearch('');
+  };
    
-     // Handles text field input change
-     const handleSearchChange = (e) => {
-       setTimeSearch(e.target.value);
-     };
-   
-     // Handles time selection or deselection
-     const handleTimeSelect = (time) => {
-       setSelectedTimes((prevSelectedTimes) => {
-         if (prevSelectedTimes.includes(time)) {
-           return prevSelectedTimes.filter((s) => s !== time);
-         } else {
-           return [...prevSelectedTimes, time];
-         }
-       });
-       setTimeSearch('');
-     };
-   
-     // Gets unique times from the courses for dropdown menu
-     const uniqueTimes = [...new Set(courses.map((course) => course.times))].sort();
+  // Gets unique times from the courses for dropdown menu
+  const uniqueTimes = [
+    ...new Set(
+      courses
+        .map((course) => course.times)
+        .filter((time) => time) // Exclude null/undefined times
+    )
+  ];
+  
+  // Helper function to convert time to 24-hour format
+  function to24Hour(time) {
+    if (!time) return 0;  // Safeguard for null/undefined
+    let [hour, minute] = time.match(/\d+/g);
+    const period = time.slice(-2);
+    
+    hour = parseInt(hour);
+    minute = parseInt(minute);
+  
+    if (period === 'pm' && hour !== 12) hour += 12;
+    if (period === 'am' && hour === 12) hour = 0;
+  
+    return hour * 60 + minute;  // Convert to total minutes
+  }
+  
+  // Custom sort for unique times (checks start and end times)
+  const sortedTimes = uniqueTimes.sort((a, b) => {
+    const [startA, endA] = a.split('-');
+    const [startB, endB] = b.split('-');
+  
+    const startComparison = to24Hour(startA) - to24Hour(startB);
+    
+    // If start times are equal, compare end times
+    if (startComparison === 0) {
+      return to24Hour(endA) - to24Hour(endB);
+    }
+  
+    return startComparison;
+  });
    
      return (
        <div className="SearchFilterContainer">

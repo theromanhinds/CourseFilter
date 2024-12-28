@@ -21,11 +21,11 @@ function CourseList({filteredCourses, isFilterMenuOpen, setIsFilterMenuOpen}) {
       </div>
       {filteredCourses.length > 0 ? (
         filteredCourses.map(course => ( <Course key={course.courseId} course={course} /> ))
-      ) : ( <p>No courses found for selected filters.</p> )}
+      ) : ( <p className='DesktopLoading'>No courses found for selected filters.</p> )}
 
       {filteredCourses.length > 0 ? (
         filteredCourses.map(course => ( <MobileCourse key={course.courseId} course={course} /> ))
-      ) : ( <p>No courses found for selected filters.</p> )}
+      ) : ( <p className='MobileLoading'>No courses found for selected filters.</p> )}
     </div>
   )
 }
